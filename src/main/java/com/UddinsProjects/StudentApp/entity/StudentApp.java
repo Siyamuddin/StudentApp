@@ -11,14 +11,14 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.time.LocalDateTime;
 
 @Entity
-@AllArgsConstructor
+
 @NoArgsConstructor
 @Getter
 @Setter
 @Table(name="studentapp")
 public class StudentApp {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id", nullable = false)
     private Long id;
     private String firstName;
@@ -32,4 +32,12 @@ public class StudentApp {
     @UpdateTimestamp
     private LocalDateTime lastUpdated;
 
+    public StudentApp(String firstName, String lastName, String dateOfBirth, String email, String password, String phoneNumber) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.dateOfBirth = dateOfBirth;
+        this.email = email;
+        this.password = password;
+        this.phoneNumber = phoneNumber;
+    }
 }

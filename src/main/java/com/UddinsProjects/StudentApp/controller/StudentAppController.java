@@ -1,7 +1,10 @@
 package com.UddinsProjects.StudentApp.controller;
 
+import com.UddinsProjects.StudentApp.Response.StudentResponse;
 import com.UddinsProjects.StudentApp.entity.StudentApp;
 import com.UddinsProjects.StudentApp.service.StudentAppService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,9 +30,9 @@ public class StudentAppController {
         return "Data updated successfully.";
     }
     @GetMapping("{id}")
-    public StudentApp getData(@PathVariable("id") Long id)
+    public ResponseEntity<Object> getData(@PathVariable("id") Long id)
     {
-        return studentAppService.getData(id);
+        return StudentResponse.responseBuilder("The request found.", HttpStatus.OK, studentAppService.getData(id));
 
     }
     @GetMapping("/all")

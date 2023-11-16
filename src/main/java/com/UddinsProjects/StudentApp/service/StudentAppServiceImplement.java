@@ -14,13 +14,15 @@ public class StudentAppServiceImplement implements StudentAppService{
         this.studentAppRepository = studentAppRepository;
     }
 
-    public void createData(StudentApp studentApp)
+    public String createData(StudentApp studentApp)
     {
         studentAppRepository.save(studentApp);
+        return "success";
     }
-    public void updateData(StudentApp studentApp)
+    public String updateData(StudentApp studentApp)
     {
         studentAppRepository.save(studentApp);
+        return "success";
     }
     public StudentApp getData(Long id)
     {
@@ -39,12 +41,13 @@ public class StudentAppServiceImplement implements StudentAppService{
         }
         return studentAppRepository.findAll();
     }
-    public void deleteData(Long id)
+    public String deleteData(Long id)
     {
         if(studentAppRepository.findById(id).isEmpty())
         {
             throw new StudentAppNotFoundException("The given ID("+id+") is not available at the moment.");
         }
         studentAppRepository.deleteById(id);
+        return "success";
     }
 }
